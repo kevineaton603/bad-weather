@@ -23,6 +23,6 @@ set(Sources
     Example.cpp
 )
 
-add_library(${This} STATIC ${Sources} ${Headers})
-
 add_subdirectory(test)
+
+add_executable(${This} ${Sources} ${Headers})
