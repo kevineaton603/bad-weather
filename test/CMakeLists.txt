@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 
-set(This ExampleTests)
+set(This BadWeatherTests)
 
 set(Sources
     ExampleTests.cpp
@@ -9,8 +9,8 @@ set(Sources
 add_executable(${This} ${Sources})
 
 target_link_libraries(${This} PUBLIC
+    BadWeather
     gtest_main
-    Example
 )
 
 add_test(

@@ -1,4 +1,4 @@
-#include "../Example.h"
+#include "../include/Example.h"
 #include <gtest/gtest.h>
 
 TEST(ExampleTests, isTrue) {
