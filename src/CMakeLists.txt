@@ -9,16 +9,17 @@ set(
     HEADER_LIST 
     "${${This}_SOURCE_DIR}/include/Example.h"
     "${${This}_SOURCE_DIR}/include/httplib.h"
+    "${${This}_SOURCE_DIR}/include/Request.h"
 )
 
 # Make an automatic library - will be static or dynamic based on user setting
-add_library(${This} main.cpp Example.cpp ${HEADER_LIST})
+add_library(${This} main.cpp Example.cpp Request.cpp ${HEADER_LIST})
 
 # We need this directory, and users of our library will need it too
 target_include_directories(${This} PUBLIC ../include)
 
 # This depends on (header only) boost
-# target_link_libraries(${This} PRIVATE Boost::boost)
+target_link_libraries(${This} PRIVATE nlohmann_json::nlohmann_json)
 
 # All users of this library will need at least C++11
 target_compile_features(${This} PUBLIC cxx_std_11)
