@@ -7,5 +7,9 @@ TEST(BadWeatherTests, isTrue){
 }
 
 TEST(RequestsTests, WeatherRequest){
-    EXPECT_EQ(isTrue(true), true);
+    WeatherRequest req;
+    auto json = req.getWeather(0,0);
+    
+    EXPECT_EQ(json["coord"]["lon"], 0);
+    EXPECT_EQ(json["coord"]["lat"], 0);
 }
