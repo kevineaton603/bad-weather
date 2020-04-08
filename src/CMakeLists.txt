@@ -13,7 +13,7 @@ set(
 )
 
 # Make an automatic library - will be static or dynamic based on user setting
-add_library(${This} main.cpp Example.cpp Request.cpp ${HEADER_LIST})
+add_library(${This} Example.cpp Request.cpp ${HEADER_LIST})
 
 # We need this directory, and users of our library will need it too
 target_include_directories(${This} PUBLIC ../include)

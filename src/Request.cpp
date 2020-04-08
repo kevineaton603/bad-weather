@@ -4,17 +4,35 @@ const std::string WeatherRequest::APP_KEY  = "dd564605fde0370a9b99f98d80729b18";
 const std::string WeatherRequest::BASE_URL = "api.openweathermap.org";
 
 WeatherRequest::WeatherRequest(){
-
+    this->client = new Client(this->BASE_URL);
 }
 
-std::string WeatherRequest::getWeather(){
-    Client cli(this->BASE_URL);
-    std::string url = "/data/2.5/weather?q=Burlington&appid=" + APP_KEY;
-    auto res = cli.Get(url.c_str());
+WeatherRequest::~WeatherRequest(){
+    delete this->client;
+}
+
+std::shared_ptr<httplib::Response> WeatherRequest::request(std::string url){
+    return this->client->Get(url.c_str());
+}
+
+json WeatherRequest::getWeather(){
+    std::string url = "/data/2.5/weather?q=Burlington&appid=" + this->APP_KEY;
+    json j;
+    auto res = this->request(url);
     if (res && res->status == 200) {
-        std::cout << res->body << std::endl;
-        auto j = json::parse(res->body);
-        std::cout << j << std::endl;
+        j = json::parse(res->body);
     }
-    return res->body;
+    return j;
+}
+
+json WeatherRequest::getWeather(int lng, int lat){
+    std::string longitude = std::to_string(lng);
+    std::string latitude = std::to_string(lat);
+    std::string url = "/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&appid=" + this->APP_KEY;
+    json j;
+    auto res = this->request(url);
+    if(res && res->status == 200){
+        j = json::parse(res->body);
+    }
+    return j;
 }

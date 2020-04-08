@@ -16,9 +16,14 @@ class WeatherRequest {
 private:
     const static std::string APP_KEY;
     const static std::string BASE_URL;
+    Client* client;
+    std::shared_ptr<httplib::Response> request(std::string url);
 public:
     WeatherRequest();
-    std::string getWeather();
+    ~WeatherRequest();
+    json getWeather();
+    json getWeather(int lng, int lat);
+
     
 };
 
