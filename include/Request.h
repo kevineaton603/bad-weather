@@ -1,7 +1,6 @@
 #ifndef REQUEST_H
 #define REQUEST_H
 
-
 #include <httplib.h>
 #include <Windows.h>
 #include <string>

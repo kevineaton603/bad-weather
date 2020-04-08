@@ -10,10 +10,12 @@ set(
     "${${This}_SOURCE_DIR}/include/Example.h"
     "${${This}_SOURCE_DIR}/include/httplib.h"
     "${${This}_SOURCE_DIR}/include/Request.h"
+    "${${This}_SOURCE_DIR}/include/Converter.h"
+    "${${This}_SOURCE_DIR}/include/UserInput.h"
 )
 
 # Make an automatic library - will be static or dynamic based on user setting
-add_library(${This} Example.cpp Request.cpp ${HEADER_LIST})
+add_library(${This} Example.cpp Request.cpp Converter.cpp UserInput.cpp ${HEADER_LIST})
 
 # We need this directory, and users of our library will need it too
 target_include_directories(${This} PUBLIC ../include)
