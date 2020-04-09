@@ -2,8 +2,11 @@
 #include "../include/Request.h"
 #include "../include/Converter.h"
 #include "../include/UserInput.h"
+#include "../include/InvalidCordinates.h"
+#include "../include/GetAdvice.h"
 #include <gtest/gtest.h>
 #include <fstream>
+
 
 TEST(BadWeatherTests, isTrue){
     EXPECT_EQ(isTrue(true), true);
@@ -15,6 +18,31 @@ TEST(RequestsTests, WeatherRequest){
     
     EXPECT_EQ(json["coord"]["lon"], 0);
     EXPECT_EQ(json["coord"]["lat"], 0);
+}
+
+TEST(getWeatherTests, NormalCordinates){
+    WeatherRequest req;
+    auto json = req.getWeather(-73,44);
+    
+    EXPECT_EQ(json["coord"]["lon"], -73);
+    EXPECT_EQ(json["coord"]["lat"], 44);
+}
+
+TEST(getWeatherTests, FakeCordinates){
+
+    EXPECT_THROW({
+        try
+        {
+            WeatherRequest req;
+            auto json = req.getWeather(9999,9999);
+        }
+        catch( const InvalidCordinates& e )
+        {
+            // and this tests that it has the correct message
+            EXPECT_STREQ( "Invalid Cordinates", e.what() );
+            throw;
+        }
+    }, InvalidCordinates );
 }
 
 TEST(ConversionTest, convert) {
@@ -33,4 +61,8 @@ TEST(UserInputTest, getUserInput){
     EXPECT_EQ(longitude, 41);
     EXPECT_EQ(latitude, 72);
     ss.clear();
+}
+
+TEST(AdviceTest, getAdvice){
+    EXPECT_EQ(getAdvice("Raining", 35), "Great day for crocs!");
 }
