@@ -29,20 +29,9 @@ TEST(getWeatherTests, NormalCordinates){
 }
 
 TEST(getWeatherTests, FakeCordinates){
-
-    EXPECT_THROW({
-        try
-        {
-            WeatherRequest req;
-            auto json = req.getWeather(9999,9999);
-        }
-        catch( const InvalidCordinates& e )
-        {
-            // and this tests that it has the correct message
-            EXPECT_STREQ( "Invalid Cordinates", e.what() );
-            throw;
-        }
-    }, InvalidCordinates );
+    WeatherRequest req;
+    req.getWeather(-73,44);
+    EXPECT_ANY_THROW(req.getWeather(99999,99999));
 }
 
 TEST(ConversionTest, convert) {
@@ -64,5 +53,5 @@ TEST(UserInputTest, getUserInput){
 }
 
 TEST(AdviceTest, getAdvice){
-    EXPECT_EQ(getAdvice("Raining", 35), "Great day for crocs!");
+    EXPECT_EQ(getAdvice("Raining", 35), "Great day for crocs with sox!");
 }

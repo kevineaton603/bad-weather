@@ -4,5 +4,7 @@
  * RETURN: Integer Value
  */
 int getUserInput(istream& input){
-    return INT_MAX;
+    int value;
+    input >> value;
+    return value;
 }

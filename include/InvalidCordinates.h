@@ -4,8 +4,10 @@
 #include <exception>
 
 class InvalidCordinates : public exception {
-
-
+public:
+    const char* what() {
+        return "Invalid Cordinates";
+    }
 };
 
 #endif
