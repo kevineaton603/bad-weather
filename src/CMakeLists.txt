@@ -13,11 +13,11 @@ set(
     "${${This}_SOURCE_DIR}/include/Converter.h"
     "${${This}_SOURCE_DIR}/include/UserInput.h"
     "${${This}_SOURCE_DIR}/include/GetAdvice.h"
-    "${${This}_SOURCE_DIR}/include/InvalidCordinates.h"
+    "${${This}_SOURCE_DIR}/include/InvalidCoordinates.h"
 )
 
 # Make an automatic library - will be static or dynamic based on user setting
-add_library(${This} Example.cpp Request.cpp Converter.cpp UserInput.cpp GetAdvice.cpp ${HEADER_LIST})
+add_library(${This} Example.cpp Request.cpp Converter.cpp UserInput.cpp GetAdvice.cpp InvalidCoordinates.cpp ${HEADER_LIST})
 
 # We need this directory, and users of our library will need it too
 target_include_directories(${This} PUBLIC ../include)

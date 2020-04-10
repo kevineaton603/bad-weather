@@ -1,8 +1,8 @@
-#ifndef GetAdvice_H
-#define GetAdvice_H
+#ifndef GET_ADVICE_H
+#define GET_ADVICE_H
 
 #include <string>
 
-std::string getAdvice(std::string, double);
+std::string getAdvice(int, double);
 
 #endif 

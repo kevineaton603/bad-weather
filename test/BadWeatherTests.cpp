@@ -2,7 +2,7 @@
 #include "../include/Request.h"
 #include "../include/Converter.h"
 #include "../include/UserInput.h"
-#include "../include/InvalidCordinates.h"
+#include "../include/InvalidCoordinates.h"
 #include "../include/GetAdvice.h"
 #include <gtest/gtest.h>
 #include <fstream>
@@ -20,7 +20,7 @@ TEST(RequestsTests, WeatherRequest){
     EXPECT_EQ(json["coord"]["lat"], 0);
 }
 
-TEST(getWeatherTests, NormalCordinates){
+TEST(getWeatherTests, NormalCoordinates){
     WeatherRequest req;
     auto json = req.getWeather(-73,44);
     
@@ -28,7 +28,7 @@ TEST(getWeatherTests, NormalCordinates){
     EXPECT_EQ(json["coord"]["lat"], 44);
 }
 
-TEST(getWeatherTests, FakeCordinates){
+TEST(getWeatherTests, FakeCoordinates){
     WeatherRequest req;
     req.getWeather(-73,44);
     EXPECT_ANY_THROW(req.getWeather(99999,99999));
@@ -53,5 +53,6 @@ TEST(UserInputTest, getUserInput){
 }
 
 TEST(AdviceTest, getAdvice){
-    EXPECT_EQ(getAdvice("Raining", 35), "Great day for crocs with sox!");
+    std::string expectedStr = "Don't forget to wear your Crocs with Socks and Sleeveless Sweatshirt";
+    EXPECT_EQ(getAdvice(500, 35), expectedStr);
 }

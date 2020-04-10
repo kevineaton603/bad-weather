@@ -26,13 +26,19 @@ json WeatherRequest::getWeather(){
 }
 
 json WeatherRequest::getWeather(int lng, int lat){
-    std::string longitude = std::to_string(lng);
-    std::string latitude = std::to_string(lat);
-    std::string url = "/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&appid=" + this->APP_KEY;
     json j;
-    auto res = this->request(url);
-    if(res && res->status == 200){
-        j = json::parse(res->body);
+    try {
+        if (lng < -180 || lng > 180 || lat < -90 || lat > 90) throw new InvalidCoordinates;
+        std::string longitude = std::to_string(lng);
+        std::string latitude = std::to_string(lat);
+        std::string url = "/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&appid=" + this->APP_KEY;
+ 
+        auto res = this->request(url);
+        if(res && res->status == 200){
+            j = json::parse(res->body);
+        }
+    } catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
     }
     return j;
 }

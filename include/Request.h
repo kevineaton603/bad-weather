@@ -6,6 +6,7 @@
 #include <string>
 #include <nlohmann/json.hpp>
 #include <iostream>
+#include <InvalidCoordinates.h>
 
 using json = nlohmann::json;
 
@@ -22,8 +23,6 @@ public:
     ~WeatherRequest();
     json getWeather();
     json getWeather(int lng, int lat);
-
-    
 };
 
 #endif

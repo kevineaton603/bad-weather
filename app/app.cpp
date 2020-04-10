@@ -18,6 +18,6 @@ int main () {
     cin >> lat;
     
     auto weather = req.getWeather(lon, lat);
-    cout << weather["weather"] << endl;
+    cout << weather<< endl;
     return 0;
 }
