@@ -23,7 +23,7 @@ int main () {
     auto weather = req.getWeather(lon, lat);
     double temp = convert(weather["main"]["temp"]);
     cout << "Currently, the weather condition is " << weather["weather"][0]["description"]
-         << " and the temperature is " << temp << endl;
+         << " and the temperature is " << temp << "\370F" << endl;
     cout << getAdvice(weather["weather"][0]["id"], temp) << endl;
     return 0;
 }
