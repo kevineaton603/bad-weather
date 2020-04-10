@@ -7,7 +7,6 @@ set(This BadWeather)
 # file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${ModernCMakeExample_SOURCE_DIR}/include/modern/*.hpp")
 set(
     HEADER_LIST 
-    "${${This}_SOURCE_DIR}/include/Example.h"
     "${${This}_SOURCE_DIR}/include/httplib.h"
     "${${This}_SOURCE_DIR}/include/Request.h"
     "${${This}_SOURCE_DIR}/include/Converter.h"
@@ -17,7 +16,7 @@ set(
 )
 
 # Make an automatic library - will be static or dynamic based on user setting
-add_library(${This} Example.cpp Request.cpp Converter.cpp UserInput.cpp GetAdvice.cpp InvalidCoordinates.cpp ${HEADER_LIST})
+add_library(${This} Request.cpp Converter.cpp UserInput.cpp GetAdvice.cpp InvalidCoordinates.cpp ${HEADER_LIST})
 
 # We need this directory, and users of our library will need it too
 target_include_directories(${This} PUBLIC ../include)
