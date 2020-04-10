@@ -46,7 +46,12 @@ TEST(UserInputTest, getUserInput){
     ss.clear();
 }
 
-TEST(AdviceTest, getAdvice){
+TEST(AdviceTest, Rain){
     std::string expectedStr = "Don't forget to wear your Crocs with Socks and Sleeveless Sweatshirt";
     EXPECT_EQ(getAdvice(500, 35), expectedStr);
+}
+
+TEST(AdviceTest, getAdvice){
+    std::string expectedStr = "Don't forget to wear your Big Metal Rod and Muscle Tee";
+    EXPECT_EQ(getAdvice(220, -15), expectedStr);
 }
