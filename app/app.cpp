@@ -2,6 +2,9 @@
 #include <string>
 #include <iostream>
 #include <Request.h>
+#include <GetAdvice.h>
+#include <Converter.h>
+#include <UserInput.h>
 
 using namespace std;
 
@@ -13,11 +16,14 @@ int main () {
     cout << "-------------------------------" << endl;
     cout << "Please Enter Your Coordinates" << endl;
     cout << "Longitude: ";
-    cin >> lon;
+    lon = getUserInput(cin);
     cout << "Latitude: ";
-    cin >> lat;
+    lat = getUserInput(cin);
     
     auto weather = req.getWeather(lon, lat);
-    cout << weather<< endl;
+    double temp = convert(weather["main"]["temp"]);
+    cout << "Currently, the weather condition is " << weather["weather"][0]["description"]
+         << " and the temperature is " << temp << endl;
+    cout << getAdvice(weather["weather"][0]["id"], temp) << endl;
     return 0;
 }
